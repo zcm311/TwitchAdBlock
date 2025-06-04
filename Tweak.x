@@ -1,5 +1,6 @@
 #import <dlfcn.h>
 #import "Tweak.h"
+#import "TWThirdPartyEmoteManager.h"
 
 NSBundle *tweakBundle;
 NSUserDefaults *tweakDefaults;
@@ -236,4 +237,5 @@ static void *hook_swift_unknownObjectWeakLoadStrong(void *ref) {
   if (![tweakDefaults objectForKey:@"TWAdBlockCustomProxyEnabled"])
     [tweakDefaults setBool:NO forKey:@"TWAdBlockCustomProxyEnabled"];
   assetResourceLoaderDelegate = [[TWAdBlockAssetResourceLoaderDelegate alloc] init];
+  [[TWThirdPartyEmoteManager sharedManager] loadGlobalEmotes];
 }
